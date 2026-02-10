@@ -1,3 +1,5 @@
-export default {
-    base: '/view-datatracking/',
-}
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  base: '/view-datatracking/',
+})
