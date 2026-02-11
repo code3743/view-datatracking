@@ -1,6 +1,19 @@
 import './style.css'
 import leaflet from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import iconUrl from 'leaflet/dist/images/marker-icon.png'
+import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
+import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
+
+
+delete L.Icon.Default.prototype._getIconUrl
+
+L.Icon.Default.mergeOptions({
+  iconUrl,
+  iconRetinaUrl,
+  shadowUrl,
+})
+
 
 const mapDiv = document.getElementById('map')
 
@@ -84,8 +97,8 @@ form.addEventListener('submit', function(event) {
   clearMap()
   if (textArea.value.trim() === '') return;
   const data = JSON.parse(textArea.value)
-  const dataTracking = data['DataTracking'];
-  const dataTrackingClean = data['CleanTrackingData'];
+  const dataTracking = data['DataTracking'] ?? [];
+  const dataTrackingClean = data['CleanTrackingData'] ?? [];
 
   const trackingRaw = [];
   const trackingProcessed = [];
